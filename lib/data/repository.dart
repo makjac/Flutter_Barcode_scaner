@@ -7,7 +7,7 @@ class BarcodeRepository {
   BarcodeRepository();
 
   Future<void> init() async {
-    if (!Hive.isAdapterRegistered(1)) {
+    if (!Hive.isAdapterRegistered(0)) {
       Hive.registerAdapter(BarcodeAdapter());
     }
     _barcodeBox = await Hive.openBox<Barcode>('barcodes');
