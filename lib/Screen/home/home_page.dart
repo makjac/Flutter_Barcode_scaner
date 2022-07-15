@@ -1,5 +1,6 @@
 import 'package:barcode_scaner/Constans/strings.dart';
-import 'package:barcode_scaner/bloc/barcode_bloc.dart';
+import 'package:barcode_scaner/Screen/home/bloc/home_bloc.dart';
+import 'package:barcode_scaner/screen/home/widget/barcode_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,15 +21,31 @@ class HomePage extends StatelessWidget {
           label: const Text("Scan new code"),
           icon: const Icon(Icons.qr_code_scanner),
         ),
-        body: BlocBuilder<BarcodeBloc, BarcodeState>(
+        body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
-            if (state is LoadingBarc) {
+            if (state is LoadingBarcodes) {
               return const CircularProgressIndicator();
             }
             if (state is BarcodesLoaded) {
-              return const Text("hello");
+              return ListView.separated(
+                  itemBuilder: (context, index) {
+                    return BarcodeCard(
+                        barcode: state.barcodes[index], index: index);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: 10);
+                  },
+                  itemCount: state.barcodes.length);
             }
-            return const Center(child: Text('Something went wrong'));
+            if (state is HomeError) {
+              return Center(
+                child: Text(
+                  state.error,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              );
+            }
+            return Container();
           },
         ),
       ),

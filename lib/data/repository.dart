@@ -4,13 +4,19 @@ import 'package:hive_flutter/hive_flutter.dart';
 class BarcodeRepository {
   late final Box _barcodeBox;
 
-  BarcodeRepository() {
-    init();
-  }
+  BarcodeRepository();
 
   Future<void> init() async {
-    Hive.registerAdapter(BarcodeAdapter());
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(BarcodeAdapter());
+    }
     _barcodeBox = await Hive.openBox<Barcode>('barcodes');
+  }
+
+  Future<void> close() async {
+    if (_barcodeBox.isOpen) {
+      await _barcodeBox.close();
+    }
   }
 
   Box get barcodeBox => _barcodeBox;

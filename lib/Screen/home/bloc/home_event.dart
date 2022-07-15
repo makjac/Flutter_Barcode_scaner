@@ -4,6 +4,8 @@ part of 'home_bloc.dart';
 @immutable
 abstract class HomeEvent {}
 
+class InitBarcodeBoxEvt extends HomeEvent {}
+
 class FetchAllBarcodesEvt extends HomeEvent {}
 
 class RemoveBarcodeEvt extends HomeEvent {

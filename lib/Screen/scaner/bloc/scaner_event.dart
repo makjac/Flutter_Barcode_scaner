@@ -4,7 +4,7 @@ part of 'scaner_bloc.dart';
 @immutable
 abstract class ScanerEvent {}
 
-class InitBarcodeBoxEvt extends ScanerEvent {}
+class InitScanningEvt extends ScanerEvent {}
 
 class AddBarcodeEvt extends ScanerEvent {
   final Barcode barcode;

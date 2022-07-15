@@ -6,9 +6,9 @@ abstract class ScanerState {}
 
 class ScanerInitial extends ScanerState {}
 
-class LoadingBarcode extends ScanerState {}
+class ScanningBarcode extends ScanerState {}
 
-class BarcodeLoaded extends ScanerState {}
+class BarcodeScaned extends ScanerState {}
 
 class ScanerError extends ScanerState {
   final String error;

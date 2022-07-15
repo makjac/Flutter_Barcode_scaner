@@ -4,10 +4,13 @@ part 'barcode.g.dart';
 
 @HiveType(typeId: 1)
 class Barcode extends HiveObject {
-  Barcode({required this.barcode, required this.date});
+  Barcode({required this.id, required this.barcode, required this.date});
   @HiveField(0)
-  final String barcode;
+  String id;
 
   @HiveField(1)
+  final String barcode;
+
+  @HiveField(2)
   final DateTime date;
 }

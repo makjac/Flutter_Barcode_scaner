@@ -17,18 +17,21 @@ class BarcodeAdapter extends TypeAdapter<Barcode> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Barcode(
-      barcode: fields[0] as String,
-      date: fields[1] as DateTime,
+      id: fields[0] as String,
+      barcode: fields[1] as String,
+      date: fields[2] as DateTime,
     );
   }
 
   @override
   void write(BinaryWriter writer, Barcode obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.barcode)
+      ..write(obj.id)
       ..writeByte(1)
+      ..write(obj.barcode)
+      ..writeByte(2)
       ..write(obj.date);
   }
 
