@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:barcode_scaner/data/repository.dart';
 import 'package:barcode_scaner/screen/scaner/bloc/scaner_bloc.dart';
 
-class ScanerPage extends StatelessWidget {
+class ScanerPage extends StatefulWidget {
   final BarcodeRepository repository;
   const ScanerPage({
     Key? key,
@@ -14,9 +14,29 @@ class ScanerPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ScanerPage> createState() => _ScanerPageState();
+}
+
+class _ScanerPageState extends State<ScanerPage> {
+  late ScanerBloc _scanerBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _scanerBloc = ScanerBloc(repository: widget.repository);
+    _scanerBloc.add(InitScanningEvt());
+  }
+
+  @override
+  void dispose() {
+    _scanerBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(_) {
     return BlocProvider(
-      create: (context) => ScanerBloc(repository: repository),
+      create: (context) => _scanerBloc,
       child: MaterialApp(
         theme: ThemeData.dark(),
         home: Scaffold(

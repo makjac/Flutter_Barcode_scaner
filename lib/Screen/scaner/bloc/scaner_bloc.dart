@@ -18,14 +18,23 @@ class ScanerBloc extends Bloc<ScanerEvent, ScanerState> {
     required this.repository,
   }) : super(ScanerInitial()) {
     on<AddBarcodeEvt>(_addBarcode);
+    on<InitScanningEvt>(_initScaning);
+  }
+
+  FutureOr<void> _initScaning(
+      InitScanningEvt event, Emitter<ScanerState> emit) async {
+    //await repository.init();
+    emit(ScanningBarcode());
   }
 
   FutureOr<void> _addBarcode(
       AddBarcodeEvt event, Emitter<ScanerState> emit) async {
     try {
-      await repository.addBarcode(event.barcode).then((bList) {
-        emit(BarcodeScaned());
-      });
+      emit(ReadingBarcode());
+      // await repository.addBarcode(event.barcode).then((bList) {
+      //   emit(BarcodeScaned());
+      // });
+      emit(BarcodeScaned());
     } catch (e) {
       emit(ScanerError(error: "Unable to load barcode"));
     }
