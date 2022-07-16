@@ -26,9 +26,8 @@ class BarcodeRepository {
     return barcodeList as List<Barcode>;
   }
 
-  Future<List<Barcode>> addBarcode(Barcode newBarcode) async {
+  Future<void> addBarcode(Barcode newBarcode) async {
     await _barcodeBox.add(newBarcode);
-    return getBarcodes();
   }
 
   Future<List<Barcode>> removeBarcode(String id) async {

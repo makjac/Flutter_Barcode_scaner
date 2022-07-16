@@ -30,17 +30,17 @@ class BarcodeCard extends StatelessWidget {
           CircleAvatar(
             child: Text((index + 1).toString()),
           ),
-          const Spacer(),
+          const SizedBox(width: 15),
           Text(
             barcode.barcode,
             style: _cardTextStyle(),
           ),
-          const SizedBox(width: 10),
+          const Spacer(),
           Text(
             barcode.date.toString().substring(0, 10),
             style: _cardTextStyle(),
           ),
-          const Spacer(),
+          const SizedBox(width: 15),
           ElevatedButton(
             onPressed: () {
               BlocProvider.of<HomeBloc>(context)
