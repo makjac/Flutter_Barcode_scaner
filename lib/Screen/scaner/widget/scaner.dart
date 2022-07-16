@@ -46,41 +46,4 @@ class Scaner extends StatelessWidget {
       child: const ScanerDecoration(),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return BlocBuilder<ScanerBloc, ScanerState>(
-  //     builder: (context, state) {
-  //       if (state is ScanningBarcode) {
-  //         return QRBarScannerCamera(
-  //           onError: ((context, error) => Center(
-  //                 child: Text(
-  //                   error.toString(),
-  //                   style: const TextStyle(color: Colors.red, fontSize: 20),
-  //                 ),
-  //               )),
-  //           qrCodeCallback: (code) => {
-  //             _qrCodeCallback(code, context),
-  //           },
-  //           fit: BoxFit.fill,
-  //           child: const ScanerDecoration(),
-  //         );
-  //       }
-
-  //       if (state is ReadingBarcode) {
-  //         return const Center(
-  //           child: CircularProgressIndicator(),
-  //         );
-  //       }
-
-  //       if (state is BarcodeScaned) {
-  //         return const Center(
-  //           child: Text("Scaned"),
-  //         );
-  //       }
-
-  //       return Container();
-  //     },
-  //   );
-  // }
 }

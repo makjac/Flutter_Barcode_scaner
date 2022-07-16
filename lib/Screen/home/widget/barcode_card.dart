@@ -20,6 +20,10 @@ class BarcodeCard extends StatelessWidget {
     );
   }
 
+  String _truncateString(String text) {
+    return (text.length >= 17) ? '${text.substring(0, 14)}...' : text;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -32,7 +36,7 @@ class BarcodeCard extends StatelessWidget {
           ),
           const SizedBox(width: 15),
           Text(
-            barcode.barcode,
+            _truncateString(barcode.barcode),
             style: _cardTextStyle(),
           ),
           const Spacer(),
