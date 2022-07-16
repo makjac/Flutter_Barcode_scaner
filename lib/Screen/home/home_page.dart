@@ -30,7 +30,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    //_homeBloc.add(CloseBarcodeBoxEvt());
     _homeBloc.close();
     super.dispose();
   }
@@ -47,18 +46,22 @@ class _HomePageState extends State<HomePage> {
             centerTitle: true,
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => Navigator.pushNamed(context, SCAN_ROUTE),
+            onPressed: () {
+              Navigator.pushNamed(context, SCAN_ROUTE);
+            },
             label: const Text("Scan new code"),
             icon: const Icon(Icons.qr_code_scanner),
           ),
           body: BlocConsumer<HomeBloc, HomeState>(
-            listener: (ctx, state) {
+            listener: (context, state) {
               if (state is HomeError) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(SnackBar(content: Text(state.error)));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(state.error),
+                  backgroundColor: Colors.teal,
+                ));
               }
             },
-            builder: (ctx, state) {
+            builder: (context, state) {
               if (state is LoadingBarcodes) {
                 return const CircularProgressIndicator();
               }

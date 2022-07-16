@@ -27,6 +27,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       InitBarcodeBoxEvt event, Emitter<HomeState> emit) async {
     try {
       await repository.init();
+      // ignore: empty_catches
     } catch (e) {}
     add(FetchAllBarcodesEvt());
   }

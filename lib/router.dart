@@ -1,5 +1,5 @@
 import 'package:barcode_scaner/data/repository.dart';
-import 'package:barcode_scaner/screen/scaner/scaner_page.dart';
+import 'package:barcode_scaner/screen/scanner/scanner_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:barcode_scaner/Constans/strings.dart';
@@ -23,7 +23,7 @@ class AppRouter {
       case SCAN_ROUTE:
         return MaterialPageRoute(
             builder: (BuildContext context) =>
-                ScanerPage(repository: repository!));
+                ScannerPage(repository: repository!));
       default:
         return null;
     }

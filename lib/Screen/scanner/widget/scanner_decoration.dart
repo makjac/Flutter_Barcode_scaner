@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ScanerDecoration extends StatelessWidget {
+class ScannerDecoration extends StatelessWidget {
   static const boxSize = 200.0;
-  const ScanerDecoration({Key? key}) : super(key: key);
+  const ScannerDecoration({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

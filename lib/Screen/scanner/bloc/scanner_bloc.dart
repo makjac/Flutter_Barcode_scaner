@@ -8,32 +8,32 @@ import 'package:barcode_scaner/data/repository.dart';
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
 
-part 'scaner_event.dart';
-part 'scaner_state.dart';
+part 'scanner_event.dart';
+part 'scanner_state.dart';
 
-class ScanerBloc extends Bloc<ScanerEvent, ScanerState> {
+class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
   final BarcodeRepository repository;
 
-  ScanerBloc({
+  ScannerBloc({
     required this.repository,
-  }) : super(ScanerInitial()) {
+  }) : super(ScannerInitial()) {
     on<AddBarcodeEvt>(_addBarcode);
     on<InitScanningEvt>(_initScaning);
   }
 
   FutureOr<void> _initScaning(
-      InitScanningEvt event, Emitter<ScanerState> emit) async {
+      InitScanningEvt event, Emitter<ScannerState> emit) async {
     //await repository.init();
     emit(ScanningBarcode());
   }
 
   FutureOr<void> _addBarcode(
-      AddBarcodeEvt event, Emitter<ScanerState> emit) async {
+      AddBarcodeEvt event, Emitter<ScannerState> emit) async {
     try {
       await repository.addBarcode(event.barcode);
-      emit(BarcodeScaned());
+      emit(BarcodeScanned());
     } catch (e) {
-      emit(ScanerError(error: "Unable to load barcode"));
+      emit(ScannerError(error: "Unable to load barcode"));
     }
   }
 }

@@ -1,29 +1,31 @@
 import 'package:barcode_scaner/constans/strings.dart';
-import 'package:barcode_scaner/screen/scaner/widget/scaner.dart';
+import 'package:barcode_scaner/screen/scanner/widget/scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:barcode_scaner/data/repository.dart';
-import 'package:barcode_scaner/screen/scaner/bloc/scaner_bloc.dart';
+import 'package:barcode_scaner/screen/scanner/bloc/scanner_bloc.dart';
 
-class ScanerPage extends StatefulWidget {
+import 'bloc/scanner_bloc.dart';
+
+class ScannerPage extends StatefulWidget {
   final BarcodeRepository repository;
-  const ScanerPage({
+  const ScannerPage({
     Key? key,
     required this.repository,
   }) : super(key: key);
 
   @override
-  State<ScanerPage> createState() => _ScanerPageState();
+  State<ScannerPage> createState() => _ScannerPageState();
 }
 
-class _ScanerPageState extends State<ScanerPage> {
-  late ScanerBloc _scanerBloc;
+class _ScannerPageState extends State<ScannerPage> {
+  late ScannerBloc _scanerBloc;
 
   @override
   void initState() {
     super.initState();
-    _scanerBloc = ScanerBloc(repository: widget.repository);
+    _scanerBloc = ScannerBloc(repository: widget.repository);
     _scanerBloc.add(InitScanningEvt());
   }
 
@@ -44,14 +46,20 @@ class _ScanerPageState extends State<ScanerPage> {
             title: const Text("Scaner"),
             centerTitle: true,
           ),
-          body: BlocListener<ScanerBloc, ScanerState>(
+          body: BlocListener<ScannerBloc, ScannerState>(
             listener: (ctx, state) {
-              if (state is BarcodeScaned) {
+              if (state is BarcodeScanned) {
                 Navigator.pushNamedAndRemoveUntil(
                     context, HOME_ROUTE, (Route<dynamic> route) => false);
               }
+              if (state is ScannerError) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(state.error),
+                  backgroundColor: Colors.teal,
+                ));
+              }
             },
-            child: Scaner(),
+            child: Scanner(),
           ),
         ),
       ),
