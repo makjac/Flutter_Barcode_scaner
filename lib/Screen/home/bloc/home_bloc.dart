@@ -20,12 +20,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchAllBarcodesEvt>(_fetchAllBarcode);
     on<RemoveBarcodeEvt>(_removeBarcode);
     on<InitBarcodeBoxEvt>(_initBarcodeBox);
+    on<CloseBarcodeBoxEvt>(_closeBarcodeBox);
   }
 
   FutureOr<void> _initBarcodeBox(
       InitBarcodeBoxEvt event, Emitter<HomeState> emit) async {
-    await repository.init();
+    try {
+      await repository.init();
+    } catch (e) {}
     add(FetchAllBarcodesEvt());
+  }
+
+  FutureOr<void> _closeBarcodeBox(
+      CloseBarcodeBoxEvt ebent, Emitter<HomeState> emit) async {
+    repository.close();
   }
 
   FutureOr<void> _fetchAllBarcode(

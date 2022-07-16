@@ -6,6 +6,8 @@ abstract class HomeEvent {}
 
 class InitBarcodeBoxEvt extends HomeEvent {}
 
+class CloseBarcodeBoxEvt extends HomeEvent {}
+
 class FetchAllBarcodesEvt extends HomeEvent {}
 
 class RemoveBarcodeEvt extends HomeEvent {

@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
+    //_homeBloc.add(CloseBarcodeBoxEvt());
     _homeBloc.close();
     super.dispose();
   }
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             centerTitle: true,
           ),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () => Navigator.pushNamed(context, SCAN_PAGE),
+            onPressed: () => Navigator.pushNamed(context, SCAN_ROUTE),
             label: const Text("Scan new code"),
             icon: const Icon(Icons.qr_code_scanner),
           ),
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
               if (state is BarcodesLoaded) {
                 return ListView.separated(
                     padding: const EdgeInsets.only(
-                        top: 10, bottom: 30, left: 5, right: 5),
+                        top: 10, bottom: 70, left: 5, right: 5),
                     itemBuilder: (context, index) {
                       return BarcodeCard(
                           barcode: state.barcodes[index], index: index);

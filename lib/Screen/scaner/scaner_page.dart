@@ -45,10 +45,10 @@ class _ScanerPageState extends State<ScanerPage> {
             centerTitle: true,
           ),
           body: BlocListener<ScanerBloc, ScanerState>(
-            listener: (context, state) {
+            listener: (ctx, state) {
               if (state is BarcodeScaned) {
                 Navigator.pushNamedAndRemoveUntil(
-                    context, HOME_PAGE, (Route<dynamic> route) => false);
+                    context, HOME_ROUTE, (Route<dynamic> route) => false);
               }
             },
             child: Scaner(),

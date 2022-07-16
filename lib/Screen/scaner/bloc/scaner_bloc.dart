@@ -30,7 +30,6 @@ class ScanerBloc extends Bloc<ScanerEvent, ScanerState> {
   FutureOr<void> _addBarcode(
       AddBarcodeEvt event, Emitter<ScanerState> emit) async {
     try {
-      emit(ReadingBarcode());
       await repository.addBarcode(event.barcode);
       emit(BarcodeScaned());
     } catch (e) {

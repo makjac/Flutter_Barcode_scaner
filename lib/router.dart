@@ -15,12 +15,12 @@ class AppRouter {
 
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case HOME_PAGE:
+      case HOME_ROUTE:
         return MaterialPageRoute(
             builder: (BuildContext context) =>
                 HomePage(repository: repository!));
 
-      case SCAN_PAGE:
+      case SCAN_ROUTE:
         return MaterialPageRoute(
             builder: (BuildContext context) =>
                 ScanerPage(repository: repository!));
