@@ -13,19 +13,34 @@ class BarcodeCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  TextStyle _cardTextStyle() {
+    return const TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          const SizedBox(width: 10),
           CircleAvatar(
             child: Text((index + 1).toString()),
           ),
+          const Spacer(),
+          Text(
+            barcode.barcode,
+            style: _cardTextStyle(),
+          ),
           const SizedBox(width: 10),
-          Text(barcode.barcode),
-          const SizedBox(width: 10),
-          Text(barcode.date.toString()),
+          Text(
+            barcode.date.toString().substring(0, 10),
+            style: _cardTextStyle(),
+          ),
+          const Spacer(),
           ElevatedButton(
             onPressed: () {
               BlocProvider.of<HomeBloc>(context)
