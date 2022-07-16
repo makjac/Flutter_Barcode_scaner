@@ -19,11 +19,8 @@ class AppRouter {
     switch (settings.name) {
       case HOME_PAGE:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (_) => HomeBloc(repository: repository!)
-                    ..add(InitBarcodeBoxEvt()),
-                  child: const HomePage(),
-                ));
+            builder: (BuildContext context) =>
+                HomePage(repository: repository!));
 
       case SCAN_PAGE:
         return MaterialPageRoute(

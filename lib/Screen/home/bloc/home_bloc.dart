@@ -49,9 +49,4 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeError(error: "Unable to remove barcode"));
     }
   }
-
-  // @override
-  // Future<void> dispose() async {
-  //   await repository.close();
-  // }
 }

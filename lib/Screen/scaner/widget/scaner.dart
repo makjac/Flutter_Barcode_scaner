@@ -6,11 +6,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_qr_bar_scanner/qr_bar_scanner_camera.dart';
 
 class Scaner extends StatelessWidget {
-  const Scaner({Key? key}) : super(key: key);
+  bool _scanerFocus = true;
+
+  Scaner({Key? key}) : super(key: key);
 
   String _idGenerator() {
     final now = DateTime.now();
     return now.microsecondsSinceEpoch.toString();
+  }
+
+  void _qrCodeCallback(String? code, BuildContext context) {
+    if (_scanerFocus) {
+      _scanerFocus = false;
+      if (code != null) {
+        BlocProvider.of<ScanerBloc>(context).add(AddBarcodeEvt(
+            barcode: Barcode(
+                id: _idGenerator(), barcode: code, date: DateTime.now())));
+      }
+    }
   }
 
   @override
@@ -26,14 +39,7 @@ class Scaner extends StatelessWidget {
                   ),
                 )),
             qrCodeCallback: (code) => {
-              if (code != null)
-                {
-                  // BlocProvider.of<ScanerBloc>(context).add(AddBarcodeEvt(
-                  //     barcode: Barcode(
-                  //         id: _idGenerator(),
-                  //         barcode: code,
-                  //         date: DateTime.now())))
-                }
+              _qrCodeCallback(code, context),
             },
             fit: BoxFit.fill,
             child: const ScanerDecoration(),

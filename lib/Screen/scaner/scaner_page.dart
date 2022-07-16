@@ -51,7 +51,7 @@ class _ScanerPageState extends State<ScanerPage> {
                     context, HOME_PAGE, (Route<dynamic> route) => false);
               }
             },
-            child: const Scaner(),
+            child: Scaner(),
           ),
         ),
       ),
