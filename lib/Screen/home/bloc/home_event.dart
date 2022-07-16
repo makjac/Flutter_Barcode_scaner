@@ -9,8 +9,8 @@ class InitBarcodeBoxEvt extends HomeEvent {}
 class FetchAllBarcodesEvt extends HomeEvent {}
 
 class RemoveBarcodeEvt extends HomeEvent {
-  final String barcode;
+  final String id;
   RemoveBarcodeEvt({
-    required this.barcode,
+    required this.id,
   });
 }

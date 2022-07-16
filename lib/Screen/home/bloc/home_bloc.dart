@@ -42,7 +42,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _removeBarcode(
       RemoveBarcodeEvt event, Emitter<HomeState> emit) async {
     try {
-      await repository.removeBarcode(event.barcode).then((bList) {
+      await repository.removeBarcode(event.id).then((bList) {
         emit(BarcodesLoaded(barcodes: bList));
       });
     } catch (e) {

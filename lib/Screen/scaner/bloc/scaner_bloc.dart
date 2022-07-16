@@ -31,9 +31,9 @@ class ScanerBloc extends Bloc<ScanerEvent, ScanerState> {
       AddBarcodeEvt event, Emitter<ScanerState> emit) async {
     try {
       emit(ReadingBarcode());
-      // await repository.addBarcode(event.barcode).then((bList) {
-      //   emit(BarcodeScaned());
-      // });
+      await repository.addBarcode(event.barcode).then((bList) {
+        emit(BarcodeScaned());
+      });
       emit(BarcodeScaned());
     } catch (e) {
       emit(ScanerError(error: "Unable to load barcode"));

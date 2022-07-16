@@ -29,7 +29,7 @@ class BarcodeCard extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               BlocProvider.of<HomeBloc>(context)
-                  .add(RemoveBarcodeEvt(barcode: barcode.barcode));
+                  .add(RemoveBarcodeEvt(id: barcode.id));
             },
             style: ElevatedButton.styleFrom(
               shape: const CircleBorder(),
