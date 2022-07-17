@@ -43,9 +43,7 @@ class _ScannerPageState extends State<ScannerPage> {
         theme: ThemeData.dark(),
         home: Scaffold(
           appBar: AppBar(
-            title: const Text(
-              "Scaner",
-            ),
+            title: const Text("Scaner"),
             centerTitle: true,
           ),
           body: BlocListener<ScannerBloc, ScannerState>(

@@ -38,7 +38,10 @@ class Scanner extends StatelessWidget {
       onError: ((context, error) => Center(
             child: Text(
               error.toString(),
-              style: const TextStyle(color: Colors.red, fontSize: 20),
+              style: const TextStyle(
+                color: Colors.red,
+                fontSize: 20,
+              ),
             ),
           )),
       qrCodeCallback: (code) => {
