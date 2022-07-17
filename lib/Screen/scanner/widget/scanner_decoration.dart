@@ -23,7 +23,9 @@ class ScannerDecoration extends StatelessWidget {
             width: boxSize,
             decoration: BoxDecoration(
               border: Border.all(color: Colors.orange, width: 3),
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10.0),
+              ),
             ),
           ),
         ],

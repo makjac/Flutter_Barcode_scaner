@@ -56,7 +56,9 @@ class _HomePageState extends State<HomePage> {
             listener: (context, state) {
               if (state is HomeError) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(state.error), backgroundColor: Colors.teal));
+                  content: Text(state.error),
+                  backgroundColor: Colors.teal,
+                ));
               }
             },
             builder: (context, state) {

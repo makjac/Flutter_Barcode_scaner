@@ -12,5 +12,7 @@ class BarcodeScanned extends ScannerState {}
 
 class ScannerError extends ScannerState {
   final String error;
-  ScannerError({required this.error});
+  ScannerError({
+    required this.error,
+  });
 }

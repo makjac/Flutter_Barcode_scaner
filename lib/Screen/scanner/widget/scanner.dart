@@ -44,7 +44,9 @@ class Scanner extends StatelessWidget {
               ),
             ),
           )),
-      qrCodeCallback: (code) => {_qrCodeCallback(code, context)},
+      qrCodeCallback: (code) => {
+        _qrCodeCallback(code, context),
+      },
       fit: BoxFit.fill,
       child: const ScannerDecoration(),
     );

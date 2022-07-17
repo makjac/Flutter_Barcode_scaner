@@ -2,8 +2,9 @@ import 'package:barcode_scaner/data/models/barcode.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class BarcodeRepository {
-  BarcodeRepository();
   late final Box _barcodeBox;
+
+  BarcodeRepository();
 
   Future<void> init() async {
     if (!Hive.isAdapterRegistered(1)) {

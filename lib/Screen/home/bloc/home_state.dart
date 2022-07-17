@@ -17,5 +17,7 @@ class BarcodesLoaded extends HomeState {
 
 class HomeError extends HomeState {
   final String error;
-  HomeError({required this.error});
+  HomeError({
+    required this.error,
+  });
 }

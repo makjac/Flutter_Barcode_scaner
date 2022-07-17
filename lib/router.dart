@@ -22,9 +22,8 @@ class AppRouter {
 
       case SCAN_ROUTE:
         return MaterialPageRoute(
-            builder: (BuildContext context) => ScannerPage(
-                  repository: repository!,
-                ));
+            builder: (BuildContext context) =>
+                ScannerPage(repository: repository!));
       default:
         return null;
     }

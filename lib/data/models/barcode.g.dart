@@ -8,6 +8,9 @@ part of 'barcode.dart';
 
 class BarcodeAdapter extends TypeAdapter<Barcode> {
   @override
+  final int typeId = 1;
+
+  @override
   Barcode read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
@@ -19,9 +22,6 @@ class BarcodeAdapter extends TypeAdapter<Barcode> {
       date: fields[2] as DateTime,
     );
   }
-
-  @override
-  final int typeId = 1;
 
   @override
   void write(BinaryWriter writer, Barcode obj) {
