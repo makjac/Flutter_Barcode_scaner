@@ -54,9 +54,7 @@ class _ScannerPageState extends State<ScannerPage> {
               }
               if (state is ScannerError) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(state.error),
-                  backgroundColor: Colors.teal,
-                ));
+                    content: Text(state.error), backgroundColor: Colors.teal));
               }
             },
             child: Scanner(),

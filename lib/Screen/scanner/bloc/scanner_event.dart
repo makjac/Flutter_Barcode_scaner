@@ -8,7 +8,5 @@ class InitScanningEvt extends ScannerEvent {}
 
 class AddBarcodeEvt extends ScannerEvent {
   final Barcode barcode;
-  AddBarcodeEvt({
-    required this.barcode,
-  });
+  AddBarcodeEvt({required this.barcode});
 }

@@ -23,7 +23,6 @@ class ScannerBloc extends Bloc<ScannerEvent, ScannerState> {
 
   FutureOr<void> _initScaning(
       InitScanningEvt event, Emitter<ScannerState> emit) async {
-    //await repository.init();
     emit(ScanningBarcode());
   }
 

@@ -5,9 +5,7 @@ import 'package:barcode_scaner/router.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
-  runApp(BarcodeScanerApp(
-    router: AppRouter(),
-  ));
+  runApp(BarcodeScanerApp(router: AppRouter()));
 }
 
 class BarcodeScanerApp extends StatelessWidget {

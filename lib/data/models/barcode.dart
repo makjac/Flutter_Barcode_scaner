@@ -7,10 +7,9 @@ class Barcode extends HiveObject {
   Barcode({required this.id, required this.barcode, required this.date});
   @HiveField(0)
   String id;
+  @HiveField(2)
+  final DateTime date;
 
   @HiveField(1)
   final String barcode;
-
-  @HiveField(2)
-  final DateTime date;
 }

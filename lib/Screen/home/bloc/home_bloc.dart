@@ -55,7 +55,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(BarcodesLoaded(barcodes: bList));
       });
     } catch (e) {
-      emit(HomeError(error: "Unable to remove barcode"));
+      emit(
+        HomeError(error: "Unable to remove barcode"),
+      );
     }
   }
 }
