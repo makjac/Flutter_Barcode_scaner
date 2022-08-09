@@ -12,9 +12,9 @@ import '../bloc/scanner_bloc.dart';
 class Scanner extends StatelessWidget {
   bool _scanerFocus = true;
 
-  Scanner({
-    Key? key,
-  }) : super(key: key);
+  var s = {"s": 2, 2: "e"};
+
+  Scanner([String? x]) : super();
 
   String _idGenerator() {
     final now = DateTime.now();

@@ -38,49 +38,46 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => _homeBloc,
-      child: MaterialApp(
-        theme: ThemeData.dark(),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Home Page"),
-            centerTitle: true,
-          ),
-          floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              Navigator.pushNamed(context, SCAN_ROUTE);
-            },
-            label: const Text("Scan new code"),
-            icon: const Icon(Icons.qr_code_scanner),
-          ),
-          body: BlocConsumer<HomeBloc, HomeState>(
-            listener: (context, state) {
-              if (state is HomeError) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(state.error),
-                  backgroundColor: Colors.teal,
-                ));
-              }
-            },
-            builder: (context, state) {
-              if (state is LoadingBarcodes) {
-                return const CircularProgressIndicator();
-              }
-              if (state is BarcodesLoaded) {
-                return ListView.separated(
-                    padding: const EdgeInsets.only(
-                        top: 10, bottom: 70, left: 5, right: 5),
-                    itemBuilder: (context, index) {
-                      return BarcodeCard(
-                          barcode: state.barcodes[index], index: index);
-                    },
-                    separatorBuilder: (context, index) {
-                      return const SizedBox(height: 10);
-                    },
-                    itemCount: state.barcodes.length);
-              }
-              return Container();
-            },
-          ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Home Page"),
+          centerTitle: true,
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.pushNamed(context, SCAN_ROUTE);
+          },
+          label: const Text("Scan new code"),
+          icon: const Icon(Icons.qr_code_scanner),
+        ),
+        body: BlocConsumer<HomeBloc, HomeState>(
+          listener: (context, state) {
+            if (state is HomeError) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+                backgroundColor: Colors.teal,
+              ));
+            }
+          },
+          builder: (context, state) {
+            if (state is LoadingBarcodes) {
+              return const CircularProgressIndicator();
+            }
+            if (state is BarcodesLoaded) {
+              return ListView.separated(
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 70, left: 5, right: 5),
+                  itemBuilder: (context, index) {
+                    return BarcodeCard(
+                        barcode: state.barcodes[index], index: index);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const SizedBox(height: 10);
+                  },
+                  itemCount: state.barcodes.length);
+            }
+            return Container();
+          },
         ),
       ),
     );

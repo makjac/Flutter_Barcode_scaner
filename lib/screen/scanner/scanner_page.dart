@@ -39,28 +39,25 @@ class _ScannerPageState extends State<ScannerPage> {
   Widget build(_) {
     return BlocProvider(
       create: (context) => _scanerBloc,
-      child: MaterialApp(
-        theme: ThemeData.dark(),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Scaner"),
-            centerTitle: true,
-          ),
-          body: BlocListener<ScannerBloc, ScannerState>(
-            listener: (ctx, state) {
-              if (state is BarcodeScanned) {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HOME_ROUTE, (Route<dynamic> route) => false);
-              }
-              if (state is ScannerError) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(state.error),
-                  backgroundColor: Colors.teal,
-                ));
-              }
-            },
-            child: Scanner(),
-          ),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Scaner"),
+          centerTitle: true,
+        ),
+        body: BlocListener<ScannerBloc, ScannerState>(
+          listener: (ctx, state) {
+            if (state is BarcodeScanned) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, HOME_ROUTE, (Route<dynamic> route) => false);
+            }
+            if (state is ScannerError) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.error),
+                backgroundColor: Colors.teal,
+              ));
+            }
+          },
+          child: Scanner(),
         ),
       ),
     );
